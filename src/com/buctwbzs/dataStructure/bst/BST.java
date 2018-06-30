@@ -1,6 +1,8 @@
 package com.buctwbzs.dataStructure.bst;
 
 /**
+ * BST impl.
+ *
  * @param <E>
  */
 
@@ -75,19 +77,33 @@ public class BST<E extends Comparable<E>> {
         }
     }
 
-    // proOrderTarverse
-    public void proOrderTarverse() {
+    // pre order traverse
+    public void proOrderTraverse() {
 
-        perOrderTarverse(root);
+        perOrderTraverse(root);
     }
 
-    private void perOrderTarverse(Node node) {
+    private void perOrderTraverse(Node node) {
 
         if (node == null) return;
 
         System.out.println(node.data);
-        perOrderTarverse(node.left);
-        perOrderTarverse(node.right);
+        perOrderTraverse(node.left);
+        perOrderTraverse(node.right);
     }
 
+    // mid order traverse
+    public void inOrderTraverse() {
+
+        inOrderTraverse(root);
+    }
+
+    private void inOrderTraverse(Node node) {
+
+        if (node == null) return;
+
+        System.out.println(node.data);
+        inOrderTraverse(node.left);
+        inOrderTraverse(node.right);
+    }
 }
