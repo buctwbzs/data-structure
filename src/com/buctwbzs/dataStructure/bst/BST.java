@@ -1,5 +1,9 @@
 package com.buctwbzs.dataStructure.bst;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 /**
  * BST impl.
  *
@@ -107,7 +111,7 @@ public class BST<E extends Comparable<E>> {
         inOrderTraverse(node.right);
     }
 
-    // post order traverse
+    // Post order traverse
     public void postOrderTraverse() {
 
         postOrderTraverse(root);
@@ -121,4 +125,24 @@ public class BST<E extends Comparable<E>> {
         postOrderTraverse(node.right);
         System.out.println(node.data);
     }
+
+    // BFS traverse
+
+    public void BFSTraverse() {
+
+        Queue<Node> queue = new LinkedList<>();
+
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            Node curr = queue.remove();
+            System.out.println(curr.data);
+            if (curr.left != null)
+                queue.add(curr.left);
+            if (curr.right != null)
+                queue.add(curr.right);
+        }
+    }
+
+
 }
