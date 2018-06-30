@@ -39,6 +39,7 @@ public class BST<E extends Comparable<E>> {
         return size == 0;
     }
 
+    // Add a Node in BST.
     public void add(E data) {
 
         root = add(root, data);
@@ -57,4 +58,21 @@ public class BST<E extends Comparable<E>> {
         }
         return curr;
     }
+
+    // Whether a BST contains a Node whose data equals the given data.
+    public boolean contains(E data) {
+
+        return contains(root, data);
+    }
+
+    public boolean contains(Node node, E data) {
+
+        if (node == null) return false;
+        if (data.compareTo(node.data) == 0) {
+            return true;
+        } else {
+            return contains(node.left, data) || contains(node.right, data);
+        }
+    }
+
 }
