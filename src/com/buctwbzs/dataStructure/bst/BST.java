@@ -75,4 +75,19 @@ public class BST<E extends Comparable<E>> {
         }
     }
 
+    // proOrderTarverse
+    public void proOrderTarverse() {
+
+        perOrderTarverse(root);
+    }
+
+    private void perOrderTarverse(Node node) {
+
+        if (node == null) return;
+
+        System.out.println(node.data);
+        perOrderTarverse(node.left);
+        perOrderTarverse(node.right);
+    }
+
 }
