@@ -78,21 +78,21 @@ public class BST<E extends Comparable<E>> {
     }
 
     // pre order traverse
-    public void proOrderTraverse() {
+    public void preOrderTraverse() {
 
-        perOrderTraverse(root);
+        preOrderTraverse(root);
     }
 
-    private void perOrderTraverse(Node node) {
+    private void preOrderTraverse(Node node) {
 
         if (node == null) return;
 
         System.out.println(node.data);
-        perOrderTraverse(node.left);
-        perOrderTraverse(node.right);
+        preOrderTraverse(node.left);
+        preOrderTraverse(node.right);
     }
 
-    // mid order traverse
+    // in order traverse
     public void inOrderTraverse() {
 
         inOrderTraverse(root);
@@ -102,8 +102,23 @@ public class BST<E extends Comparable<E>> {
 
         if (node == null) return;
 
-        System.out.println(node.data);
         inOrderTraverse(node.left);
+        System.out.println(node.data);
         inOrderTraverse(node.right);
+    }
+
+    // post order traverse
+    public void postOrderTraverse() {
+
+        postOrderTraverse(root);
+    }
+
+    private void postOrderTraverse(Node node) {
+
+        if (node == null) return;
+
+        postOrderTraverse(node.left);
+        postOrderTraverse(node.right);
+        System.out.println(node.data);
     }
 }
