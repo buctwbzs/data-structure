@@ -1,8 +1,7 @@
-package com.buctwbzs.dataStructure.bst;
+package bst;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
 /**
  * BST impl.

@@ -1,7 +1,7 @@
 package test.com.buctwbzs.dataStructure.linkedList;
 
 
-import com.buctwbzs.dataStructure.linkedList.LinkedList;
+import linkedList.LinkedList;
 
 public class LinkedListTest {
 
@@ -13,7 +13,6 @@ public class LinkedListTest {
         list.append(1);
         list.append(2);
         list.toString();
-        list.swapNodes(1, 2);
         list.toString();
     }
 }

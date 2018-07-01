@@ -1,4 +1,4 @@
-package com.buctwbzs.dataStructure.linkedList.doublyLinkedList;
+package linkedList.doublyLinkedList;
 
 
 /**
