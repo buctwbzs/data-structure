@@ -214,15 +214,15 @@ public class BST<E extends Comparable<E>> {
      *
      *      root == null
      *
-     * 2:root is maxNode
+     * 2:root is minNode
      *
      *      0
      *     / \
      *   null 0
-     *     \
-     *      0
-     *      <p>
-     * 3: maxNode has't left child
+     *         \
+     *          0
+     *
+     * 3: minNode has't right child
      *
      *       0
      *      / \
@@ -230,7 +230,7 @@ public class BST<E extends Comparable<E>> {
      *    /
      *   0
      *
-     * 4: maxNode has left child
+     * 4: maxNode has right child
      *
      *       0
      *      / \
