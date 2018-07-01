@@ -260,10 +260,50 @@ public class BST<E extends Comparable<E>> {
 
 
     /**
-     * Remove random node.
+     * Remove random node(use Hibbard Deletion).
      * *************************************************
+     *
+     * 2.Remove leaf node.
+     * 3.Remove node has left child node.
+     * 4.Remove node has right child node.
+     * 5.Remove node has left and right child node.
+     *
      **************************************************/
 
+    public void remove(E data){
+
+        root = remove(root, data);
+    }
+
+    private Node remove(Node node,E data){
+
+         if (node == null) return null;
+         if(data.compareTo(node.data) < 0){
+            node.left = remove(node.left, data);
+            return node;
+         }else if(data.compareTo(node.data) > 0){
+             node.right = remove(node.right, data);
+             return node;
+         }else {
+             if (node.left == null){
+                 Node rightNode = node.right;
+                 node.right = null;
+                 --size;
+                 return rightNode;
+             }
+             if (node.right == null){
+                 Node leftNode = node.left;
+                 node.left = null;
+                 --size;
+                 return leftNode;
+             }
+             Node successor = findMin(node.right);
+             successor.right = removeMin(node.right); // --size;
+             successor.right = node.left;
+             node.left = node.right = null;
+             return successor;
+         }
+    }
 
     // Find Node whose value is max
     public E findMax() {
