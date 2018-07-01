@@ -96,7 +96,7 @@ public class BST<E extends Comparable<E>> {
         preOrderTraverse(node.right);
     }
 
-    // in order traverse
+    // In order traverse
     public void inOrderTraverse() {
 
         inOrderTraverse(root);
@@ -126,8 +126,18 @@ public class BST<E extends Comparable<E>> {
         System.out.println(node.data);
     }
 
-    // BFS traverse
 
+    /**
+     * BFS traverse
+     * ******************************************************
+     *
+     *        0
+     *      /  \
+     *     0    0
+     *    / \  / \
+     *   0  0 0  0
+     *
+     *******************************************************/
     public void BFSTraverse() {
 
         Queue<Node> queue = new LinkedList<>();
@@ -145,4 +155,144 @@ public class BST<E extends Comparable<E>> {
     }
 
 
+    /**
+     * Delete and return node whose value is max;
+     * ******************************************************
+     * 1: Tree is empty.
+     *
+     *    root == null
+     *
+     * 2:root is maxNode
+     *
+     *       0
+     *      / \
+     *     0 null
+     *    /
+     *   0
+     *
+     * 3: maxNode has't left child
+     *
+     *       0
+     *      / \
+     *     0   0
+     *    /   / \
+     *   0  null null
+     *
+     * 4: maxNode has left child
+     *
+     *       0
+     *      / \
+     *     0   0
+     *    / \  /\
+     *   0  0 0  null
+     *******************************************************/
+
+    public E removeMax() {
+
+        E e = findMax();
+        root = removeMax(root);
+        return e;
+    }
+
+    // Return BST's root.
+    private Node removeMax(Node node) {
+
+        if (node.right == null) {
+            Node leftNode = node.left;
+            node.left = null;
+            --size;
+            return leftNode;
+        }
+        node.right = removeMin(node.right);
+        return node;
+    }
+
+
+    /**
+     * Delete and return node whose value is min;
+     * *****************************************
+     * 1: Tree is empty.
+     *
+     *      root == null
+     *
+     * 2:root is maxNode
+     *
+     *      0
+     *     / \
+     *   null 0
+     *     \
+     *      0
+     *      <p>
+     * 3: maxNode has't left child
+     *
+     *       0
+     *      / \
+     *     0   0
+     *    /
+     *   0
+     *
+     * 4: maxNode has left child
+     *
+     *       0
+     *      / \
+     *     0   0
+     *    / \  /
+     *   0  0 0
+     ******************************************/
+
+    public E removeMin() {
+
+        E min = findMin();
+        root = removeMin(root);
+        return min;
+    }
+
+    private Node removeMin(Node node) {
+
+        if (node.left == null) {
+            Node rightNode = node.right;
+            node.right = null;
+            --size;
+            return rightNode;
+        }
+        node.left = removeMin(node.left);
+        return node;
+    }
+
+
+    /**
+     * Remove random node.
+     * *************************************************
+     **************************************************/
+
+
+    // Find Node whose value is max
+    public E findMax() {
+
+        if (size() == 0)
+            throw new IllegalArgumentException("BST is empty");
+        return findMax(root).data;
+    }
+
+    private Node findMax(Node node) {
+
+        if (node.left == null)
+            return node;
+        return findMax(node.left);
+    }
+
+    // Find Node whose value is min
+    public E findMin() {
+
+        if (size() == 0)
+            throw new IllegalArgumentException("BST is empty");
+        return findMin(root).data;
+    }
+
+    private Node findMin(Node node) {
+
+        if (node.right == null)
+            return node;
+        return findMin(node.right);
+    }
 }
