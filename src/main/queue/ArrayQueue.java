@@ -19,6 +19,9 @@ public class ArrayQueue<E> implements Queue<E> {
         array.addLast(e);
     }
 
+    /**
+     * Deqeue O(n)
+     * */
     @Override
     public E dequeue() {
         return array.removeFirst();
