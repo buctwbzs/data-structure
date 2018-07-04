@@ -1,4 +1,4 @@
-package linkedList;
+package main.linkedList;
 
 
 /**
@@ -20,54 +20,82 @@ package linkedList;
  * 2) Extra memory space for a pointer is required with each element of this list.
  */
 
-public class LinkedList<T> {
+public class LinkedList<E> {
 
     // Head of list.
-    private Node<T> head;
+    private Node<E> head;
 
-    public static class Node<T> {
-        private Node<T> next;
-        private T data;
+    public static class Node<E> {
+        private Node<E> next;
+        private E data;
+
 
         /**
          * Constructor
-         *
-         * @param data
          */
-        public Node(T data) {
+        public Node(E data, Node next) {
+
+            this.data = data;
+            this.next = next;
+
+        }
+
+        public Node(E data) {
+
             this.data = data;
             this.next = null;
+
         }
 
-        public Node<T> getNext() {
+        public Node() {
+
+            this(null, null);
+
+        }
+
+        public Node<E> getNext() {
+
             return next;
+
         }
 
-        public void setNext(Node<T> next) {
+        public void setNext(Node<E> next) {
+
             this.next = next;
+
         }
 
-        public void setData(T data) {
+        public void setData(E data) {
             this.data = data;
         }
 
-        public T getData() {
+        public E getData() {
             return data;
+        }
+
+        @Override
+        public String toString() {
+            return data.toString();
         }
     }
 
-    public Node<T> getHead() {
+    public LinkedList() {
+        head = null;
+    }
+
+    public Node<E> getHead() {
         return head;
     }
+
 
     /**
      * Insert a new Node at the front.
      *
      * @param newData
      */
-    public void push(T newData) {
+    public void push(E newData) {
 
-        Node<T> newNode = new Node<>(newData);
+        Node<E> newNode = new Node<>(newData);
         newNode.setNext(head);
         head = newNode;
     }
@@ -77,14 +105,14 @@ public class LinkedList<T> {
      *
      * @param newData
      */
-    public void append(T newData) {
+    public void append(E newData) {
 
-        Node<T> newNode = new Node<>(newData);
+        Node<E> newNode = new Node<>(newData);
         if (head == null) {
             head = newNode;
             return;
         }
-        Node<T> last = head;
+        Node<E> last = head;
         while (last.getNext() != null) {
             last = last.getNext();
         }
@@ -97,14 +125,14 @@ public class LinkedList<T> {
      *
      * @param newData
      */
-    public void insertAfter(Node<T> prev, T newData) {
+    public void insertAfter(Node<E> prev, E newData) {
 
         if (prev == null) {
             System.out.println("The given prev node can't be null");
             return;
         }
-        Node<T> newNode = new Node<>(newData);
-        Node<T> next = prev.getNext();
+        Node<E> newNode = new Node<>(newData);
+        Node<E> next = prev.getNext();
         newNode.setNext(next);
         prev.setNext(newNode);
     }
@@ -114,9 +142,9 @@ public class LinkedList<T> {
      *
      * @param key
      */
-    public void delete(T key) {
+    public void delete(E key) {
 
-        Node<T> temp = head, prev = null;
+        Node<E> temp = head, prev = null;
         if (temp != null && temp.getData() == key) {
             head = temp.next;
             return;
@@ -135,7 +163,7 @@ public class LinkedList<T> {
      * @param idx
      */
     public void remove(int idx) {
-        Node<T> temp = head, prev = null;
+        Node<E> temp = head, prev = null;
         int i = 0;
         if (idx == 0) {
             head = temp.getNext();
@@ -146,7 +174,7 @@ public class LinkedList<T> {
             temp = temp.getNext();
         }
         if (temp == null || temp.getNext() == null) return;
-        Node<T> next = temp.getNext().getNext();
+        Node<E> next = temp.getNext().getNext();
         temp.setNext(next);
     }
 
@@ -157,7 +185,7 @@ public class LinkedList<T> {
      */
     public int getLength() {
 
-        Node<T> temp = head;
+        Node<E> temp = head;
         int len = 0;
 
         while (temp != null) {
@@ -173,7 +201,7 @@ public class LinkedList<T> {
      * @return len
      */
 
-    public int getLengthByRecursive(Node<T> head) {
+    public int getLengthByRecursive(Node<E> head) {
         if (head == null) return 0;
         return 1 + getLengthByRecursive(head.getNext());
     }
