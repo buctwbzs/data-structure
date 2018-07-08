@@ -135,6 +135,12 @@ public class DynamicArray<E> {
 
   }
 
+  public void set(int index, E e) {
+    if (index < 0 || index >= size)
+      throw new IllegalArgumentException("Set failed. Index is illegal.");
+    data[index] = e;
+  }
+
   public E get(int index) {
 
     if (index < 0 || index >= size)
