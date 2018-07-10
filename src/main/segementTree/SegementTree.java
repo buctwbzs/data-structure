@@ -41,6 +41,25 @@ public class SegementTree<E> {
 
   }
 
+  public E query(int queryL, int queryR) {
+    if (queryL < 0 || queryL >= data.length || queryR < 0 || queryR >= data.length || queryL > queryR)
+      throw new IllegalArgumentException("Idx is illegal");
+    return query(0, 0, data.length - 1, queryL, queryR);
+
+  }
+
+  private E query(int treeIndex, int l, int r, int queryL, int queryR) {
+    if (l == queryL || r == queryR)
+      return tree[treeIndex];
+    int mid = l + (r - l) / 2;
+    int leftTreeIndex = leftChild(treeIndex);
+    int rightTreeIndex = rightChild(treeIndex);
+    if (queryL >= mid + 1)
+      return query(rightTreeIndex, mid + 1, r, queryL, queryR);
+    else if (queryR < mid + 1)
+      return query(leftTreeIndex, l, mid, queryL, queryR);
+    return merger.merge(query(leftTreeIndex, l, mid, queryL, mid), query(rightTreeIndex, mid + 1, r, mid + 1, queryR));
+  }
 
   public int getSize() {
     return data.length;
