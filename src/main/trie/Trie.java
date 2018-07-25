@@ -109,4 +109,25 @@ public class Trie {
     addByRecursive(++index, word, node.next.get(c));
 
   }
+
+  public boolean contains(String word) {
+
+    Node curr = root;
+
+    for (int i = 0; i < word.length(); i++) {
+
+      char c = word.charAt(i);
+
+      if (curr.next.get(c) == null)
+        return false;
+
+      curr = curr.next.get(c);
+
+    }
+
+    // If curr is end, return true. Else, return false.
+    return curr.isWord;
+
+  }
+
 }
