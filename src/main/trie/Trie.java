@@ -130,4 +130,23 @@ public class Trie {
 
   }
 
+  public boolean isPrefix(String prefix) {
+
+    Node curr = root;
+
+    for (int i = 0; i < prefix.length(); i++) {
+
+      char c = prefix.charAt(i);
+
+      if (curr.next.get(c) == null)
+        return false;
+
+      curr = curr.next.get(c);
+
+    }
+
+    return true;
+
+  }
+
 }
