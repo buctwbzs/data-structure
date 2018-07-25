@@ -23,13 +23,13 @@ public class Trie {
 
     public Node() {
 
-      this.isWord = false;
+      this(false);
 
     }
 
   }
 
-  private Trie() {
+  public Trie() {
 
     root = new Node();
     size = 0;
@@ -55,7 +55,7 @@ public class Trie {
 
       char c = word.charAt(i);
 
-      if (root.next.get(c) == null)
+      if (curr.next.get(c) == null)
         curr.next.put(word.charAt(i), new Node());
 
       curr = curr.next.get(c);
